@@ -1,0 +1,17 @@
+max_steps = 100  
+async_level = 2  
+
+[model]  
+name = "Qwen/Qwen3-0.6B"  
+tp = 1  
+  
+[scheduler]  
+type = "linear"  
+warmup_steps = 10  
+  
+[ckpt]  
+interval = 10 
+  
+[wandb]  
+project = "sokoban-training"  
+name = "qwen3-0.6b-run"
