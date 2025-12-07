@@ -10,4 +10,15 @@
 #SBATCH --mail-user=yash.more@mila.quebec
 
 source .venv/bin/activate
-uv run rl --trainer @ configs/sokoban/train.toml --orchestrator @ configs/sokoban/orch.toml --inference @ configs/sokoban/infer.toml --wandb.project sokoban-rl-run --wandb.name sokoban-rl-run-$(date +%Y%m%d%H%M%S) --trainer.model.optimization-dtype bfloat16 --trainer.model.reduce-dtype bfloat16 --trainer.model.name "Qwen/Qwen3-0.6B" --orchestrator.seq-len 4096 --orchestrator.sampling.max-tokens 2048
+
+uv run rl \
+  --trainer.toml-files configs/sokoban/train.toml \
+  --orchestrator.toml-files configs/sokoban/orch.toml \
+  --inference.toml-files configs/sokoban/infer.toml \
+  --wandb.project sokoban-rl-run \
+  --wandb.name sokoban-rl-run-$(date +%Y%m%d%H%M%S) \
+  --trainer.model.optimization-dtype bfloat16 \
+  --trainer.model.reduce-dtype bfloat16 \
+  --trainer.model.name "Qwen/Qwen3-0.6B" \
+  --orchestrator.seq-len 4096 \
+  --orchestrator.sampling.max-tokens 2048
